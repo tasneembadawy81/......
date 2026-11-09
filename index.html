@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>عالم أنظمة التشغيل</title>
+<style>
+:root{--t:#176b87;--bg:#dbf3f7;--pc:#ffb870;--c:#eefafb;--bd:#cfe9ef}
+*{box-sizing:border-box}
+body{margin:0;font-family:Cairo,Tajawal,"Segoe UI",Tahoma,sans-serif;background:var(--bg);color:#1c3d4a;padding-top:env(safe-area-inset-top,0)}
+header{background:var(--t);color:#fff;display:flex;align-items:center;gap:8px;padding:10px 4vw;flex-wrap:wrap;position:sticky;top:0;z-index:5;box-shadow:0 2px 8px #0003}
+header h1{font-size:1rem;margin:0;margin-inline-end:auto}
+.btn{background:var(--pc);color:#1c3d4a;border:0;border-radius:12px;padding:8px 14px;font:inherit;font-size:.85rem;cursor:pointer;transition:.2s}
+.btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 6px 14px #176b8744}
+.btn:disabled{opacity:.45;cursor:default}
+.btn.o{background:#fff;border:1.5px solid var(--t);color:var(--t)}
+main{max-width:1000px;margin:20px auto;padding:0 14px}
+.card{background:#fff;border-radius:26px;padding:28px;box-shadow:0 10px 30px #176b8722}
+.pg.in{animation:fi .45s}
+.k{font-size:.75rem;font-weight:700;color:var(--t);margin-bottom:8px}
+h2{color:var(--t);font-weight:600;font-size:1.5rem;margin:.2em 0 .5em}h3{color:var(--t);font-weight:600;margin:.3em 0;font-size:1.05rem}
+p{line-height:1.9;font-size:.92rem;margin:.4em 0}
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:16px 0}
+.gc{background:var(--c);border:1px solid var(--bd);border-radius:18px;padding:16px;transition:.25s}
+.gc .ic,.f .ic{font-size:1.8rem;display:block}
+.nt{background:var(--t);color:#fff;border-radius:18px;padding:18px 22px;font-weight:700;margin-top:14px}
+.flip{perspective:900px;height:170px;cursor:pointer;outline:0;border-radius:18px}
+.flip .in{position:relative;width:100%;height:100%;transition:transform .6s;transform-style:preserve-3d}
+.flip.on .in{transform:rotateY(180deg)}.flip.on .f,.flip.on .b{box-shadow:0 0 18px #20c4c8aa,0 8px 20px #176b8733}bdi{unicode-bidi:isolate}
+.flip:hover .in,.flip:focus-visible .in{box-shadow:0 0 0 3px #20b2aa55;border-radius:18px}
+.f,.b{direction:rtl;text-align:right;unicode-bidi:isolate;position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--c);border:1px solid var(--bd);border-radius:18px;padding:16px;box-shadow:0 6px 16px #176b8722;display:flex;flex-direction:column;justify-content:center}
+.b{transform:rotateY(180deg);background:#e2f6f8}
+.fi{position:absolute;top:8px;left:12px;font-style:normal;color:#20a0a8;font-size:1.1rem}
+.fh{font-size:.7rem;color:#5b8a96;margin-top:6px}
+.q{background:#f1fafc;border:1px solid var(--bd);border-radius:16px;padding:18px;margin:14px 0}
+.qt{color:var(--t);margin:0 0 8px}
+.op{display:flex;gap:10px;align-items:center;background:#fff;border:1px solid #d6edf2;border-radius:10px;padding:10px 14px;margin:8px 0;cursor:pointer;transition:.2s;position:relative;font-size:.9rem}
+.op:hover{border-color:#20b2aa}
+.op.ok{background:#dff6e5;border-color:#3cb371;box-shadow:0 0 14px #3cb37166;animation:bn .5s}
+.op.bad{background:#ffe6dc;border-color:#ee7b50;animation:sh .45s}
+.mk{margin-inline-start:auto;font-size:1.1rem}.ok .mk{color:#1f9a55;animation:bn .5s}.bad .mk{color:#d4552d}
+.fb{margin-top:10px;font-weight:600;font-size:.9rem;min-height:1px}.fb.g{color:#1f7a45}.fb.r{color:#c4552d}
+.sp{position:absolute;pointer-events:none;animation:up .9s forwards;font-size:1rem}
+.dg{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;background:var(--c);border-radius:18px;padding:22px;position:relative}
+.nd{background:#fff;border:2px solid #20b2aa;border-radius:16px;padding:10px 16px;font:inherit;font-weight:700;cursor:pointer;transition:.4s;color:#1c3d4a}
+.nd.os{background:var(--t);color:#fff}
+.nd.lit{box-shadow:0 0 0 4px #29d3e055,0 0 22px #29d3e0;transform:scale(1.08);background:#e1fbff}.nd.os.lit{background:#0f5a73}
+.ar{color:#20b2aa;font-size:1.6rem;transition:.4s;opacity:.4}.ar.lit{opacity:1;color:#ffa24a;transform:scale(1.4);text-shadow:0 0 10px #ffb870}
+.zb{position:absolute;top:8px;left:10px;background:#fff;border:1px solid var(--bd);border-radius:10px;cursor:pointer;font-size:1rem;padding:2px 8px}
+#inf{margin-top:12px;font-weight:600;color:var(--t);min-height:2em}
+.game{background:#f1fafc;border:1px solid var(--bd);border-radius:18px;padding:16px;margin:12px 0}
+.gh{display:flex;justify-content:space-between;font-weight:700;color:var(--t)}
+.gi{background:#fff;border-radius:12px;padding:8px 14px;animation:pl 2s infinite;font-weight:600}
+.desk{position:relative;height:270px;border-radius:14px;background:linear-gradient(135deg,#bfeaf0,#e8f9fb);border:6px solid #2b4a58;overflow:hidden;cursor:default;margin:10px 0;transition:.3s}
+.desk.hl{box-shadow:0 0 0 4px #3cb371,0 0 24px #3cb371aa inset}
+.desk.sh{animation:sh .45s}
+.wall{position:absolute;left:14px;top:14px;width:46%;height:62%;border-radius:12px;background:linear-gradient(#ffd89b,#f59a6b 55%,#2aa59b 56%,#176b87);display:flex;align-items:flex-end;justify-content:center;color:#fff;font-size:.75rem;padding:6px;transition:.3s}
+.wall.hl{box-shadow:0 0 0 4px #3cb371,0 14px 26px #3cb371aa}
+.icons{position:absolute;right:14px;top:14px;display:flex;flex-direction:column;gap:12px}
+.ic2{width:78px;text-align:center;font-size:1.9rem;cursor:pointer;transition:.3s;border-radius:12px;padding:4px}
+.ic2 small{display:block;font-size:.65rem;color:#1c3d4a}.ic2:hover{background:#ffffffaa}
+.ic2.hl{transform:scale(1.25);background:#fff;box-shadow:0 0 18px #3cb371}
+.tb{position:absolute;bottom:0;left:0;right:0;height:34px;background:#176b87;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 14px;font-size:.8rem}
+.cur{position:absolute;pointer-events:none;font-size:1.2rem;z-index:3;transform:translate(-50%,-50%)}
+table{width:100%;border-collapse:collapse;font-size:.88rem}th{background:var(--t);color:#fff;padding:12px;text-align:right}td{padding:10px 12px;border-bottom:1px solid #e2f1f4}tr:nth-child(even) td{background:#f1fafc}
+.book{width:190px;height:240px;margin:auto;background:linear-gradient(135deg,#176b87,#20b2aa);border-radius:8px 18px 18px 8px;box-shadow:-10px 10px 0 #e8b26d;color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:700;padding:18px;font-size:1.2rem;cursor:pointer;transition:.3s}.book:hover{transform:rotate(-2deg) scale(1.03)}
+details{background:var(--c);border:1px solid var(--bd);border-radius:14px;padding:10px 16px;margin:8px 0}summary{cursor:pointer;font-weight:700;color:var(--t)}
+.srch{display:flex;gap:8px}.srch input{flex:1;padding:12px 16px;border-radius:14px;border:1.5px solid var(--bd);font:inherit}
+.chip{display:inline-block;background:var(--c);border:1px solid var(--bd);border-radius:20px;padding:4px 12px;margin:8px 4px 0 0;cursor:pointer;font-size:.8rem}
+.rs{background:var(--c);border:1px solid var(--bd);border-radius:12px;padding:10px 14px;margin:8px 0;cursor:pointer;transition:.2s}.rs:hover{box-shadow:0 0 12px #20b2aa55}
+mark{background:#ffe0a8}
+.ft{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:18px}.ft b{color:var(--t);font-size:.85rem}
+.pb{height:6px;background:#fff;border-radius:3px;margin-top:12px;overflow:hidden}.pb i{display:block;height:100%;background:linear-gradient(90deg,#20b2aa,#ffb870);transition:width .5s}
+.cov{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;align-items:center}
+.ill{background:radial-gradient(#fff,#bfe8ee);border-radius:24px;height:250px;position:relative;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:4.5rem}
+.ill span{position:absolute;font-size:2rem;animation:fl 3s ease-in-out infinite}
+#zm{position:fixed;inset:0;background:#06222ccc;display:none;align-items:center;justify-content:center;z-index:20;backdrop-filter:blur(2px)}
+#zm.on{display:flex;animation:fo .3s}#zm.out{opacity:0;transition:.25s}
+.zw{display:flex;flex-direction:column;align-items:center;width:min(92vw,880px)}
+.zp{position:relative;background:#fff;border-radius:24px;padding:32px;width:100%;box-shadow:0 0 60px #29d3e0aa,0 30px 60px #0008;animation:zi .4s;overflow:auto;max-height:80vh}
+.zp::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 40%,#ffffff99 50%,transparent 60%);transform:translateX(100%);animation:sw 2.8s ease-in-out infinite;pointer-events:none}
+.zr{width:70%;height:26px;margin-top:8px;background:radial-gradient(#29d3e099,transparent 70%);filter:blur(6px)}
+.zx{position:sticky;top:0;float:left;background:var(--t);color:#fff;border:0;border-radius:50%;width:36px;height:36px;font-size:1rem;cursor:pointer;z-index:2}
+#rd{position:fixed;inset:0;background:#06222ccc;display:none;align-items:center;justify-content:center;z-index:30;backdrop-filter:blur(3px)}#rd.on{display:flex;animation:fo .35s}#rd.out{opacity:0;transition:.25s}
+.rw{background:#fff;border-radius:20px;width:min(96vw,980px);height:92vh;display:flex;flex-direction:column;box-shadow:0 0 70px #29d3e0aa,0 30px 60px #0008;animation:zi .45s;overflow:hidden}
+.rh,.rf{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 14px;background:#eefafb;flex-wrap:wrap}.rc{display:flex;gap:6px;align-items:center}.rb{flex:1;overflow:auto;background:#cdd9dd;padding:10px}.rb img{display:block;margin:auto;max-width:none;height:auto;background:#fff;box-shadow:0 4px 20px #0004}a.btn{text-decoration:none}
+@keyframes fi{from{opacity:0;transform:translateY(10px)}}@keyframes fo{from{opacity:0}}@keyframes zi{from{transform:scale(.7);opacity:0}}
+@keyframes sh{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}@keyframes bn{50%{transform:scale(1.04)}}
+@keyframes up{to{transform:translateY(-34px);opacity:0}}@keyframes fl{50%{transform:translateY(-12px)}}
+@keyframes sw{to{transform:translateX(-100%)}}@keyframes pl{50%{box-shadow:0 0 14px #ffb870}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(max-width:600px){.card{padding:18px}h2{font-size:1.2rem}header h1{width:100%}}
+</style></head><body>
+<header><h1>عالم أنظمة التشغيل</h1>
+<button class="btn" data-go="2">قائمة الموضوعات</button><button class="btn" data-go="17">المصطلحات</button><button class="btn" data-go="18">الكتاب الإلكتروني</button><button class="btn" data-go="19">محرك البحث</button><button class="btn" data-go="20">المساعدة</button>
+<button class="btn" data-act="snd" id="snd" aria-label="تشغيل أو إيقاف الصوت" title="الصوت">🔊</button></header>
+<main><div class="card pg" id="pg"></div>
+<div class="ft"><button class="btn o" id="pv">→ الصفحة السابقة</button><b id="ct"></b><button class="btn" id="nx">الصفحة التالية ←</button></div>
+<div class="pb"><i id="pr"></i></div></main>
+<div id="rd" role="dialog" aria-modal="true" aria-label="الكتاب الإلكتروني"><div class="rw"><div class="rh"><button class="btn rx" data-b="close">✕ إغلاق</button><b>الكتاب الإلكتروني — الدرس الثالث</b><span class="rc"><button class="btn o" data-b="out" aria-label="تصغير">−</button><button class="btn o" data-b="in" aria-label="تكبير">+</button><button class="btn o" data-b="fs" aria-label="ملء الشاشة">⛶</button><a class="btn o" id="pdfl" href="book/book.pdf" target="_blank" rel="noopener">PDF ↗</a></span></div><div class="rb"><img id="rdi" alt="صفحة من الكتاب"></div><div class="rf"><button class="btn o" data-b="prev">→ الصفحة السابقة</button><b id="rdn"></b><button class="btn" data-b="next">الصفحة التالية ←</button></div></div></div>
+<div id="zm" role="dialog" aria-modal="true"></div>
+<script>
+const $=s=>document.querySelector(s);
+/* ---------- sound (Web Audio, only after user clicks) ---------- */
+let AC,snd=true;
+function tone(seq,type,d,v){if(!snd)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();let t=AC.currentTime;seq.forEach((f,i)=>{const o=AC.createOscillator(),g=AC.createGain(),s=t+i*d;o.type=type;o.frequency.value=f;g.gain.setValueAtTime(0,s);g.gain.linearRampToValueAtTime(v,s+.02);g.gain.exponentialRampToValueAtTime(.001,s+d);o.connect(g);g.connect(AC.destination);o.start(s);o.stop(s+d+.02)})}catch(e){}}
+const sOk=()=>tone([523,659,784],'sine',.17,.18),sNo=()=>tone([230,175],'triangle',.15,.14);
+/* ---------- SCORM 1.2 + local fallback ---------- */
+const TOTAL_Q=7,st={page:1,seen:[1],q:{}};
+const L={api:null,
+init(){let w=window,n=0;try{while(!w.API&&w.parent&&w.parent!==w&&n++<9)w=w.parent;this.api=w.API||null}catch(e){}
+ if(this.api)this.api.LMSInitialize("");
+ try{const d=this.get('cmi.suspend_data');if(d)Object.assign(st,JSON.parse(d));const p=+this.get('cmi.core.lesson_location');if(p>0)st.page=p}catch(e){}
+ if(!this.api||this.get('cmi.core.lesson_status')==='not attempted')this.set('cmi.core.lesson_status','incomplete')},
+get(k){try{return this.api?this.api.LMSGetValue(k):localStorage.getItem('osb_'+k)}catch(e){return''}},
+set(k,v){try{this.api?this.api.LMSSetValue(k,String(v)):localStorage.setItem('osb_'+k,String(v))}catch(e){}},
+save(){const c=Object.values(st.q).filter(Boolean).length;
+ this.set('cmi.suspend_data',JSON.stringify(st));this.set('cmi.core.lesson_location',st.page);
+ this.set('cmi.core.score.min',0);this.set('cmi.core.score.max',100);this.set('cmi.core.score.raw',Math.round(100*c/TOTAL_Q));
+ if(st.seen.length>=20)this.set('cmi.core.lesson_status','completed');
+ if(this.api)this.api.LMSCommit("")},
+end(){if(this.api){this.api.LMSCommit("");this.api.LMSFinish("")}}};
+addEventListener('pagehide',()=>L.end());
+/* ---------- helpers ---------- */
+const hd=(k,t,s)=>`<div class="k">${k}</div><h2>${t}</h2>${s?`<p>${s}</p>`:''}`;
+const lat=s=>s.replace(/[A-Za-z][A-Za-z0-9 ]*[A-Za-z0-9]|[A-Za-z]/g,'<bdi dir="ltr">$&</bdi>');
+const fc=(ico,t,b)=>`<div class="flip" tabindex="0" role="button" aria-pressed="false" aria-label="${t} — اضغط لقلب البطاقة"><div class="in"><div class="f"><i class="fi">⟲</i><span class="ic">${ico}</span><h3>${lat(t)}</h3><span class="fh">اضغط لقلب البطاقة</span></div><div class="b"><i class="fi">⟲</i><p>${lat(b)}</p></div></div></div>`;
+const flips=a=>`<div class="g3">${a.map(x=>fc(...x)).join('')}</div>`;
+const goals=(i,k,t,a)=>`<div style="font-size:2.2rem">${i}</div>${hd(k,t)}<div class="g3">${a.map(x=>`<div class="gc">${x[0]?`<span class="ic">${x[0]}</span>`:''}<p>${x[1]}</p></div>`).join('')}</div>`;
+const QD={};
+function quiz(id,q,o,a,e,h){QD[id]={a,e,h};const d=st.q[id];return `<div class="q" data-id="${id}"><p class="qt">${q}</p>${o.map((t,i)=>`<label class="op${d&&i==a?' ok':''}"><input type="radio" name="${id}" value="${i}"${d&&i==a?' checked disabled':''}><span>${t}</span><b class="mk">${d&&i==a?'✓':''}</b></label>`).join('')}<button class="btn chk"${d?' disabled':''}>تحقق من الإجابة</button><div class="fb ${d?'g':''}" aria-live="polite">${d?'أحسنت! إجابتك صحيحة.<br>'+e:''}</div></div>`}
+const sc=()=>Object.values(st.q).filter(Boolean).length;
+/* ---------- pages ---------- */
+const GL=[["نظام التشغيل", "واجهة بين المستخدم والأجهزة والبرمجيات، مسؤول عن إدارة المكونات المادية وتشغيل جميع البرمجيات ومساعدة المستخدم في إنجاز مهامه بسهولة ويسر."], ["واجهة المستخدم", "إحدى وظائف نظام التشغيل التي تتيح للمستخدم التفاعل مع الجهاز."], ["إدارة الذاكرة", "إحدى وظائف نظام التشغيل الأساسية."], ["إدارة نظام الملفات", "إحدى وظائف نظام التشغيل الأساسية."], ["الأمن والحماية", "حماية الجهاز وأمنه من وظائف نظام التشغيل."], ["سطح المكتب Desktop", "الشاشة الافتتاحية لنظام التشغيل، وتضم مجموعة من الأيقونات مرتبة بشكل معين."], ["الأيقونات Icons", "مجموعة من الرموز تظهر مرتبة بشكل معين على سطح المكتب."], ["الخلفية Background", "عبارة عن صورة أو لون يقوم المستخدم بتحديده."], ["الأشرطة Bars", "تحتوي على أيقونات لبرمجيات مثبتة وأيقونات لضبط إعدادات النظام مثل التاريخ والوقت والصوت والشبكة."], ["أجهزة الكمبيوتر الشخصية PCs", "تستخدم أنظمة مثل Microsoft Windows وmacOS وتوزيعات من Linux."], ["الأجهزة المحمولة Mobile Devices", "الهواتف الذكية والأجهزة اللوحية، وتعتمد على iOS وAndroid وأنظمة أخرى."], ["الخوادم Servers", "أجهزة تستخدم Linux أو Microsoft Windows Server أو أنظمة متخصصة لإدارة موارد الشبكة وتقديم خدماتها."], ["وحدات تحكم الألعاب Gaming Consoles", "مثل PlayStation وXbox وNintendo Switch، بأنظمة تشغيل خاصة مُحسّنة للألعاب والوسائط المتعددة."], ["التلفزيون الذكي Smart TVs", "يعمل بأنظمة مثل Android TV وTizen وwebOS."], ["الأجهزة القابلة للارتداء Wearable Devices", "مثل الساعات الذكية وأجهزة تتبع اللياقة البدنية، وأنظمتها مصممة خصيصًا لوظائفها."], ["أجهزة الشبكة Network Devices", "مثل أجهزة التوجيه Routers والمحولات Switches، وتستخدم أنظمة لإدارة الشبكة والإعدادات ومميزات الأمان."], ["أنظمة السيارات Automotive Systems", "أنظمة للتحكم في وظائف السيارة مثل المعلومات والترفيه والملاحة ومساعدة السائق."], ["الأنظمة المدمجة Embedded Systems", "أنظمة تشغيل داخل أجهزة مثل الصراف الآلي ATM ومحطات نقاط البيع POS."], ["أنظمة التحكم الصناعية ICS", "أنظمة تستخدم في المنشآت الصناعية للتحكم في أداء الآلات والعمليات الصناعية."]];
+const P=[
+()=>`<div class="cov"><div><div class="k" style="font-weight:400">كتاب تفاعلي • الصف الأول الإعدادي</div><h2 style="font-size:2rem;font-weight:800">وحدة أنظمة التشغيل والتعامل معها</h2><p>رحلة ممتعة لاكتشاف كيف تتعاون الأجهزة والبرامج لتجعل الكمبيوتر والهاتف يعملان!</p><br><button class="btn" data-go="2">ابدأ التعلم ←</button></div><div class="ill" data-zoomable="1">☁️<span style="top:20px;right:30px">🗂️</span><span style="top:20px;left:30px;animation-delay:.5s">💻</span><span style="bottom:20px;right:40px;animation-delay:1s">🖨️</span><span style="bottom:20px;left:40px;animation-delay:1.5s">📱</span><button class="zb" data-zoom aria-label="تكبير">🔍</button></div></div>`,
+()=>hd('خريطة رحلتك','قائمة الموضوعات','اختر درسًا، ثم اتبع الصفحات بالترتيب. يمكنك الرجوع إلى هنا في أي وقت.')+`<div class="g3" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">${[[3,'🎯 الدرس الأول: ما نظام التشغيل؟'],[6,'🖥️ الدرس الثاني: مهام النظام وواجهته'],[10,'📱 الدرس الثالث: أنواع أنظمة التشغيل'],[15,'🏆 تمرين الوحدة: اختبر معلوماتك']].map(x=>`<button class="btn o" style="padding:18px;text-align:right;font-size:.95rem" data-go="${x[0]}">${x[1]}</button>`).join('')}</div>`,
+()=>goals('🎯','الدرس الأول • الأهداف','ماذا ستتعلم؟',[['🧩','تعرّف معنى نظام التشغيل بكلمات بسيطة.'],['🔗','اشرح كيف يصل بين المستخدم والبرامج والأجهزة.'],['⚙️','حدد دوره في إدارة مكونات الحاسوب.']]),
+()=>`<div style="position:relative">${hd('الدرس الأول • المفهوم الأساسي','ما نظام التشغيل؟','يمكن تعريف نظام التشغيل على أنه واجهة بين المستخدم والأجهزة والبرمجيات، فهو المسؤول عن إدارة المكونات المادية وتشغيل جميع البرمجيات ومساعدة المستخدم في إنجاز مهامه المختلفة على جهاز الكمبيوتر بسهولة ويسر.')}
+<div data-zoomable="1"><div class="dg" id="dg"><button class="zb" data-zoom aria-label="تكبير الرسم">🔍</button>
+<button class="nd" data-s="1" data-i="المستخدم هو أنت: تعطي الأوامر بالضغط أو اللمس.">👤<br>المستخدم</button><span class="ar" data-s="2">←</span>
+<button class="nd os" data-s="3" data-i="نظام التشغيل يستقبل أوامرك ويوزعها على الأجهزة والبرامج بطريقة مرتبة.">⚙️<br>نظام التشغيل</button><span class="ar" data-s="4">←</span>
+<button class="nd" data-s="5" data-i="الشاشة تعرض لك النتائج وما يحدث على الجهاز.">🖥️ الشاشة</button><button class="nd" data-s="5" data-i="الطابعة تنفذ أوامر الطباعة التي يرسلها نظام التشغيل.">🖨️ الطابعة</button><button class="nd" data-s="5" data-i="الماوس يرسل حركتك وضغطاتك إلى نظام التشغيل.">🖱️ الماوس</button></div></div>
+<div id="inf">اضغط على أي عنصر لتعرف دوره.</div><button class="btn o" data-act="replay" style="margin-top:8px">↻ أعد الحركة</button>
+<div class="nt">فكّر فيه كقائد ينظم عمل الأجزاء المادية، ويتيح للبرامج استخدامها بطريقة مرتبة.</div></div>`,
+()=>hd('الدرس الأول • جرّب وتذكر','نشاط: من الذي ينظم العمل؟')+quiz('q5','أي جزء يساعد البرامج على التعامل مع الطابعة والشاشة؟',['خلفية سطح المكتب','نظام التشغيل','الماوس وحده'],1,'نظام التشغيل هو الوسيط الذي يتيح للبرامج استخدام الطابعة والشاشة.','فكّر في البرنامج الأساسي الذي يربط بين المستخدم والأجهزة.')+`<div class="g3"><div class="gc"><p>نظام التشغيل هو حلقة الوصل بين المستخدم والبرامج والأجهزة.</p></div><div class="gc"><p>ينظم استخدام المكونات المادية لتعمل معًا.</p></div></div>`,
+()=>goals('🧭','الدرس الثاني • الأهداف','استعد لاكتشاف واجهة النظام',[['','تعرف عناصر واجهة المستخدم.'],['','عدد مهام نظام التشغيل الأساسية.'],['','ميز بين سطح المكتب والأيقونات والخلفية.']]),
+()=>hd('الدرس الثاني • أربع مهام مهمة','ماذا يفعل نظام التشغيل؟','ومن وظائفه أيضًا إدارة المكونات المادية للجهاز.')+flips([['◈','واجهة المستخدم','يعرض عناصر تساعدك على تنفيذ الأوامر.'],['▣','إدارة الذاكرة','ينظم مساحة العمل التي تحتاجها البرامج أثناء تشغيلها.'],['⬡','الأمن والحماية','يساعد على حماية الجهاز والملفات عبر الصلاحيات والإعدادات.'],['▤','إدارة الملفات','يساعدك على حفظ الملفات وتنظيمها والعثور عليها.']]),
+()=>hd('الدرس الثاني • تعرّف الشاشة','واجهة المستخدم من حولك','واجهة المستخدم هي ما تراه وتتفاعل معه عندما تطلب من الجهاز تنفيذ مهمة.')+flips([['🖥️','سطح المكتب • Desktop','الشاشة الافتتاحية لنظام التشغيل، وتضم مجموعة من الأيقونات مرتبة بشكل معين.'],['🗂️','الأيقونات • Icons','مجموعة من الرموز تظهر مرتبة بشكل معين على سطح المكتب.'],['🎨','الخلفية • Background','عبارة عن صورة أو لون يقوم المستخدم بتحديده، وتظهر فوقه الأيقونات.']]),
+()=>`${hd('الدرس الثاني • نشاط وملخص','تأمل الواجهة وتذكر')}<div class="game"><div class="gh"><span id="gt">استكشف واجهة المستخدم</span><span>⭐ <b id="gs">0</b>/3</span></div><p class="gi" id="gi"></p>
+<div class="desk" id="desk" aria-label="سطح مكتب تعليمي"><div class="wall" id="wall">🏞️ صورة الخلفية</div><div class="icons"><div class="ic2" tabindex="0" role="button">📁<small>مجلداتي</small></div><div class="ic2" tabindex="0" role="button">📝<small>مستند</small></div><div class="ic2" tabindex="0" role="button">🌐<small>متصفح</small></div></div><div class="tb" id="tb"><span>⊞ ابدأ</span><span>12:00</span></div><span class="cur" id="cur" style="display:none">🖱️</span></div><div class="fb" id="gf" aria-live="polite"></div></div>
+<div class="gc" style="margin:12px 0"><h3>خلاصة سريعة</h3><p>يدير النظام الذاكرة والملفات والحماية، ويقدم واجهة تضم سطح المكتب والأيقونات والخلفية. وتحتوي الأشرطة Bars على أيقونات لبرمجيات مثبتة وأيقونات لضبط إعدادات مثل التاريخ والوقت والصوت والشبكة.</p></div>`+quiz('q9','ما العنصر الذي يمثل برنامجًا بصورة صغيرة؟',['الأيقونة','الذاكرة'],0,'الأيقونة رمز صغير يمثل برنامجًا أو ملفًا أو أمرًا.','فكّر في الصور الصغيرة التي تضغط عليها على سطح المكتب.'),
+()=>goals('🌍','الدرس الثالث • الأهداف','أنظمة مختلفة لأجهزة مختلفة',[['','تعرّف أمثلة لأنظمة الكمبيوتر والهاتف.'],['','اكتشف أنظمة الخوادم وأجهزة الترفيه.'],['','حدد أمثلة للأنظمة المدمجة في حياتنا.']]),
+()=>hd('الدرس الثالث • أجهزة نستخدمها يوميًا','الكمبيوتر والهاتف المحمول')+`<div class="g3" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">${fc('💻','أجهزة الكمبيوتر','تستخدم أنظمة مثل Microsoft Windows وmacOS وتوزيعات مختلفة من Linux.')+fc('📱','الهواتف المحمولة','تعتمد الهواتف الذكية والأجهزة اللوحية على iOS من Apple وAndroid من Google وأنظمة أخرى.')}</div><p>تختلف أسماء الأنظمة وواجهاتها، لكنها جميعًا تساعد الجهاز على تشغيل البرامج وتنظيم العمل.</p>`,
+()=>hd('الدرس الثالث • وراء الشاشة','الخوادم وأجهزة الترفيه')+flips([['🗄️','Servers • الخوادم','تستخدم أنظمة مثل Linux بتوزيعاته المختلفة وMicrosoft Windows Server، وأنظمة متخصصة لإدارة موارد الشبكة وتقديم خدماتها.'],['🎮','وحدات تحكم الألعاب','مثل PlayStation وXbox وNintendo Switch بأنظمة تشغيل خاصة مُحسّنة لتطبيقات الألعاب والوسائط المتعددة.'],['📺','Smart TVs • التلفزيونات الذكية','تعمل على أنظمة مثل Android TV وTizen وwebOS لتوفير ميزات ذكية كخدمات البث والتطبيقات والاتصال بالإنترنت.']]),
+()=>hd('الدرس الثالث • التقنية حولنا','أنظمة مدمجة في أماكن غير متوقعة','النظام المدمج مصمم لأداء مهام محددة داخل جهاز أكبر أو جهاز متخصص.')+flips([['🧾','نقاط البيع POS','جهاز إلكتروني يستطيع العميل من خلاله دفع ثمن المنتجات التي قام بشرائها.'],['🏧','الصراف الآلي ATM','جهاز الصراف الآلي Automated Teller Machine من الأنظمة المدمجة.'],['🚗','السيارات الحديثة','تحتوي على أنظمة تشغيل للتحكم في الوظائف المختلفة مثل أنظمة المعلومات والترفيه والملاحة ومساعدة السائق.']]),
+()=>hd('الدرس الثالث • نشاط وملخص','طابق الجهاز مع نوع نظامه')+quiz('q14','أي زوج صحيح؟',['الخوادم ← iOS فقط','التلفزيون الذكي ← Android TV أو Tizen','الهاتف المحمول ← Microsoft Windows Server'],1,'تعمل أجهزة التلفزيون الذكية على أنظمة مثل Android TV وTizen وwebOS.','تذكر أنظمة التلفزيون الذكي المذكورة في الدرس الثالث.')+`<div class="nt">توجد أنظمة تشغيل للحواسيب والهواتف والخوادم وأجهزة الترفيه والأجهزة المدمجة؛ ويختلف تصميمها باختلاف وظيفة الجهاز.</div>`,
+()=>hd('تمرين الوحدة • الجزء الأول','اختبر معلوماتك: المفاهيم والمهام')+quiz('q15a','١. تُعد برمجيات ........ مسؤولة عن إدارة المكونات المادية وتشغيل جميع البرمجيات الأخرى.',['مكافحة الفيروسات','نظام التشغيل','معالجة النصوص','الرسام'],1,'نظام التشغيل مسؤول عن إدارة المكونات المادية وتشغيل جميع البرمجيات.','هي البرمجية التي تعمل واجهة بين المستخدم والأجهزة والبرمجيات.')+quiz('q15b','٢. صح أم خطأ: يتم إدارة المكونات المادية لجهاز الكمبيوتر من خلال برنامج معالجة النصوص.',['صح','خطأ'],1,'إدارة المكونات المادية مسؤولية نظام التشغيل وليست معالجة النصوص.','اسأل نفسك: أي برمجية تدير مكونات الجهاز؟'),
+()=>hd('تمرين الوحدة • الجزء الثاني','اختبر معلوماتك: الأجهزة والواجهات')+quiz('q16a','٣. تستخدم أجهزة الخوادم أنظمة تشغيل مثل ........',['Android','Tizen','Linux','macOS'],2,'تستخدم الخوادم Linux بتوزيعاته المختلفة وMicrosoft Windows Server.','تذكر أنظمة الخوادم المذكورة في الدرس الثالث.')+quiz('q16b','٤. صح أم خطأ: لا توجد أنظمة تشغيل داخل أجهزة الصراف الآلي.',['صح','خطأ'],1,'الصراف الآلي يحتوي على نظام مدمج يدير واجهته وعملياته.','تذكر الأنظمة المدمجة في الأجهزة المتخصصة.')+`<div class="nt" id="res">نتيجتك حتى الآن: ${sc()} من ${TOTAL_Q}</div>`,
+()=>hd('مرجع سريع','المصطلحات')+`<div style="overflow-x:auto"><table><tr><th>المصطلح</th><th>التعريف</th></tr>${GL.map(g=>`<tr><td>${g[0]}</td><td>${g[1]}</td></tr>`).join('')}</table></div>`,
+()=>hd('مراجع التعلم','الكتاب الإلكتروني','الدرس الثالث: أنظمة التشغيل Operating Systems — الصف الأول الإعدادي.')+`<div class="cov"><div><div class="book" data-b="open" tabindex="0" role="button" aria-label="افتح الكتاب الإلكتروني">أنظمة التشغيل والتعامل معها 📘</div></div><div><p>اقرأ صفحات الكتاب الأصلي داخل التطبيق، وتنقّل بين صفحاته وكبّر النص.</p><br><button class="btn" data-b="open">افتح الكتاب الإلكتروني</button></div></div>`,
+()=>hd('ابحث وتعلّم','محرك البحث')+`<p>ابحث داخل مصطلحات هذه الوحدة وصفحاتها التعليمية.</p><p>ما الذي تريد معرفته؟</p><div class="srch"><input id="sq" type="search" placeholder="ابحث عن أي مصطلح هنا..." aria-label="بحث"><button class="btn" id="sb">🔍 ابحث</button></div><div>${['نظام التشغيل','سطح المكتب','الأيقونات','إدارة الذاكرة','إدارة الملفات'].map(c=>`<span class="chip" tabindex="0" role="button">${c}</span>`).join('')}</div><div id="sr"></div>`,
+()=>hd('دليل الاستخدام','المساعدة')+`<div class="g3">${[['🧭','تنقّل بسهولة','استخدم زري السابق والتالي أسفل الصفحة، أو أزرار الهيدر للوصول مباشرة إلى الأقسام. يمكنك أيضًا استخدام مفتاحي ← →.'],['📚','اختر درسًا','افتح «قائمة الموضوعات» ثم اختر الدرس أو تمرين الوحدة.'],['🔄','اقلب البطاقات','اضغط على البطاقة (أو Enter) لتقلبها وترى الشرح، واضغط مرة أخرى لإرجاعها.'],['🔍','كبّر الرسوم','اضغط زر 🔍 لتكبير الرسم. أغلقه بزر ✕ أو Esc أو بالضغط خارجه.'],['🎮','العب واكتشف','في الصفحة 9 نفّذ تحديات سطح المكتب الثلاثة واجمع النقاط.'],['✅','جرّب وأجب','حدد إجابة ثم اضغط «تحقق من الإجابة». إن أخطأت، اقرأ التلميح وحاول مرة أخرى.'],['🔎','ابحث وراجع','اكتب مصطلحًا في «محرك البحث» أو افتح «المصطلحات» للمراجعة السريعة.'],['📖','افتح الكتاب','من صفحة «الكتاب الإلكتروني» اضغط «افتح الكتاب الإلكتروني» لقراءة صفحات الكتاب الأصلي مع التنقل والتكبير وملء الشاشة.'],['🔊','تحكم في الصوت','زر 🔊 في أعلى الصفحة يكتم المؤثرات أو يشغلها. لا يعمل أي صوت تلقائيًا.']].map(x=>`<div class="gc"><span class="ic">${x[0]}</span><h3>${x[1]}</h3><p style="font-size:.82rem">${x[2]}</p></div>`).join('')}</div><div class="nt" id="res">نتيجتك في الأنشطة: ${sc()} من ${TOTAL_Q}</div>`
+];
+/* ---------- page 4 animation ---------- */
+let T=[];
+function anim4(){const d=$('#dg');if(!d)return;d.querySelectorAll('.lit').forEach(e=>e.classList.remove('lit'));
+ for(let k=1;k<=5;k++)T.push(setTimeout(()=>{const g=$('#dg');g&&g.querySelectorAll(`[data-s="${k}"]`).forEach(e=>e.classList.add('lit'))},k*700))}
+/* ---------- page 9 game ---------- */
+const GS=[['التحدي 1: اكتشف سطح المكتب','اضغط على مساحة سطح المكتب (المساحة الفارغة).','desk','سطح المكتب هو مساحة العمل الأساسية التي تظهر بعد تشغيل الجهاز.','اضغط على المساحة الفارغة بين الأيقونات والصورة.'],['التحدي 2: اكتشف الأيقونات','اضغط على أيقونة من الأيقونات.','icon','الأيقونة رمز صغير يمثل برنامجًا أو ملفًا أو أمرًا.','الأيقونة صورة صغيرة مع اسم، وتوجد على جانب الشاشة.'],['التحدي 3: حدد خلفية سطح المكتب','حدد خلفية سطح المكتب.','wall','الخلفية هي الصورة أو اللون الظاهر خلف عناصر سطح المكتب.','الخلفية هي الصورة الكبيرة الملونة.']];
+let G={s:0,pt:0,err:0};
+function gInit(){G={s:0,pt:0,err:0};gShow()}
+function gShow(){if(!$('#gi'))return;$('#gs').textContent=G.pt;const f=$('#gf');
+ if(G.s>=3){$('#gt').textContent='اكتملت اللعبة';$('#gi').innerHTML=`أحسنت! لقد تعرفت على عناصر واجهة المستخدم.<br>النتيجة: ${G.pt} من 3 <button class="btn" data-act="gre" style="margin-inline-start:10px">إعادة اللعب</button>`;return}
+ $('#gt').textContent=GS[G.s][0];$('#gi').textContent=GS[G.s][1];f.textContent='';f.className='fb'}
+function gClick(t){if(G.s>=3)return;const k=t.closest('.ic2')?'icon':t.closest('#wall')?'wall':t.closest('#tb')?'tb':'desk',g=GS[G.s],f=$('#gf'),el=k=='icon'?t.closest('.ic2'):k=='wall'?$('#wall'):$('#desk');
+ if(k==g[2]){el.classList.add('hl');sOk();spark(el);f.className='fb g';f.innerHTML='أحسنت! '+g[3];if(!G.err)G.pt++;G.s++;G.err=0;
+  T.push(setTimeout(()=>{el.classList.remove('hl');gShow2(f.innerHTML)},1800))}
+ else{G.err++;sNo();const d=$('#desk');d.classList.remove('sh');void d.offsetWidth;d.classList.add('sh');f.className='fb r';f.textContent='حاول مرة أخرى! تلميح: '+g[4]}}
+function gShow2(m){gShow();if(G.s<3&&$('#gf')){$('#gf').className='fb g';$('#gf').innerHTML=m}}
+/* ---------- quiz / effects ---------- */
+function spark(el){el.style.position=el.style.position||'relative';for(let i=0;i<6;i++){const s=document.createElement('span');s.className='sp';s.textContent='✨';s.style.left=10+Math.random()*80+'%';s.style.top=Math.random()*60+'%';s.style.animationDelay=i*60+'ms';el.appendChild(s);setTimeout(()=>s.remove(),1200)}}
+function check(q){const id=q.dataset.id,s=q.querySelector('input:checked'),fb=q.querySelector('.fb'),d=QD[id];
+ if(!s){fb.className='fb r';fb.textContent='اختر إجابة أولًا.';return}
+ q.querySelectorAll('.op').forEach(o=>{o.classList.remove('ok','bad');o.querySelector('.mk').textContent=''});
+ const lab=s.closest('label'),mk=lab.querySelector('.mk');void lab.offsetWidth;
+ if(+s.value===d.a){lab.classList.add('ok');mk.textContent='✓';fb.className='fb g';fb.innerHTML='أحسنت! إجابتك صحيحة.<br>'+d.e;st.q[id]=true;sOk();spark(lab);q.querySelectorAll('input').forEach(i=>i.disabled=true);q.querySelector('.chk').disabled=true}
+ else{lab.classList.add('bad');mk.textContent='✗';fb.className='fb r';fb.innerHTML='حاول مرة أخرى!<br>تلميح: '+d.h;sNo();s.checked=false}
+ const r=$('#res');if(r)r.textContent=r.textContent.replace(/\d+ من/,sc()+' من');L.save()}
+/* ---------- zoom ---------- */
+function zoom(el){const z=$('#zm');z.innerHTML=`<div class="zw"><div class="zp"><button class="zx" data-act="zx" aria-label="إغلاق">✕</button>${el.innerHTML.replace(/<button class="zb"[^>]*>.*?<\/button>/g,'')}</div><div class="zr"></div></div>`;z.querySelectorAll('.nd,.ar').forEach(e=>e.classList.add('lit'));z.classList.remove('out');z.classList.add('on');z.querySelector('.zx').focus()}
+function unzoom(){const z=$('#zm');if(!z.classList.contains('on'))return;z.classList.add('out');setTimeout(()=>z.classList.remove('on','out'),250)}
+/* ---------- search ---------- */
+const nm=s=>s.replace(/[\u064B-\u0652\u0640]/g,'').replace(/[أإآ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي').toLowerCase();
+let IDX;function search(v){const r=$('#sr');v=nm(v.trim());if(!v){r.innerHTML='';return}
+ IDX=IDX||P.map((f,i)=>{const d=document.createElement('div');d.innerHTML=f();const h=d.querySelector('h2');return{p:i+1,h:h?h.textContent:'صفحة',t:d.textContent.replace(/\s+/g,' ').trim()}});
+ const res=IDX.filter(x=>x.p!=19&&nm(x.t).includes(v));
+ r.innerHTML=res.length?res.map(x=>{const n=nm(x.t),i=n.indexOf(v),ex=x.t.slice(Math.max(0,i-30),i+v.length+60);return `<div class="rs" data-go="${x.p}" tabindex="0" role="link"><b>صفحة ${x.p} • ${x.h}</b><p style="margin:2px 0">…${ex}…</p></div>`}).join(''):'<p>لا توجد نتائج. جرّب كلمة أخرى.</p>'}
+/* ---------- book reader ---------- */
+const BK=["book/p1.jpg", "book/p2.jpg", "book/p3.jpg", "book/p4.jpg", "book/p5.jpg", "book/p6.jpg", "book/p7.jpg"];let bp=1,bz=1;
+function rdraw(){$('#rdi').src=BK[bp-1];$('#rdi').style.width=bz*100+'%';$('#rdn').textContent=`صفحة ${bp} من ${BK.length}`;$('#rd .rb').scrollTop=0}
+function bk(a){const r=$('#rd');
+ if(a=='open'){r.className='on';bp=1;bz=1;rdraw();st.bk=1;L.save();$('#rd .rx').focus();return}
+ if(a=='close'){r.classList.add('out');try{document.fullscreenElement&&document.exitFullscreen()}catch(e){}setTimeout(()=>r.className='',250);return}
+ if(a=='next')bp=Math.min(BK.length,bp+1);else if(a=='prev')bp=Math.max(1,bp-1);
+ else if(a=='in')bz=Math.min(3,bz+.25);else if(a=='out')bz=Math.max(.5,bz-.25);
+ else if(a=='fs'){try{r.requestFullscreen&&r.requestFullscreen()}catch(e){}}
+ rdraw()}
+/* ---------- navigation ---------- */
+function go(n){n=Math.max(1,Math.min(20,n));T.forEach(clearTimeout);T=[];unzoom();st.page=n;if(!st.seen.includes(n))st.seen.push(n);draw();L.save();scrollTo({top:0})}
+function draw(){const m=$('#pg');m.className='card pg';void m.offsetWidth;m.className='card pg in';m.innerHTML=P[st.page-1]();
+ $('#ct').textContent=`الصفحة ${st.page} من 20`;$('#pv').disabled=st.page==1;$('#nx').disabled=st.page==20;$('#pr').style.width=st.page*5+'%';
+ if(st.page==4)anim4();if(st.page==9)gInit()}
+document.addEventListener('click',e=>{const t=e.target,c=s=>t.closest(s);let x;
+ if(x=c('[data-b]'))bk(x.dataset.b);
+ else if(x=c('[data-go]'))go(+x.dataset.go);
+ else if(c('.chk'))check(c('.q'));
+ else if(c('[data-zoom]'))zoom(c('[data-zoomable]'));
+ else if(c('.book'))zoom(c('.book'));
+ else if(c('.flip'))c('.flip').classList.toggle('on'),c('.flip').setAttribute('aria-pressed',c('.flip').classList.contains('on'));
+ else if(x=c('.nd[data-i]')){$('#inf').textContent=x.dataset.i;x.classList.add('lit')}
+ else if(c('[data-act="replay"]'))anim4();
+ else if(c('[data-act="snd"]')){snd=!snd;$('#snd').textContent=snd?'🔊':'🔇';$('#snd').setAttribute('aria-pressed',!snd)}
+ else if(c('[data-act="zx"]')||t.id=='zm')unzoom();
+ else if(c('[data-act="gre"]'))gInit();
+ else if(c('#desk'))gClick(t);
+ else if(c('.ic2'))gClick(t);
+ else if(c('#sb'))search($('#sq').value);
+ else if(x=c('.chip')){$('#sq').value=x.textContent;search(x.textContent)}});
+document.addEventListener('input',e=>{if(e.target.id=='sq')search(e.target.value)});
+document.addEventListener('keydown',e=>{const t=e.target;
+ if($('#rd').classList.contains('on')){if(e.key=='Escape')bk('close');else if(e.key=='ArrowLeft')bk('next');else if(e.key=='ArrowRight')bk('prev');return}
+ if(e.key=='Escape')unzoom();
+ else if((e.key=='Enter'||e.key==' ')&&t.matches('.flip,.chip,.rs,.ic2,.book')){e.preventDefault();t.click()}
+ else if(e.key=='Enter'&&t.id=='sq')search(t.value);
+ else if(!t.matches('input,textarea')&&!$('#zm').classList.contains('on')){if(e.key=='ArrowLeft')go(st.page+1);if(e.key=='ArrowRight')go(st.page-1)}});
+document.addEventListener('mousemove',e=>{const d=$('#desk');if(!d)return;const r=d.getBoundingClientRect(),c=$('#cur'),i=e.clientX>r.left&&e.clientX<r.right&&e.clientY>r.top&&e.clientY<r.bottom;c.style.display=i?'block':'none';if(i){c.style.left=e.clientX-r.left+'px';c.style.top=e.clientY-r.top+'px'}});
+$('#pv').onclick=()=>go(st.page-1);$('#nx').onclick=()=>go(st.page+1);
+L.init();draw();L.save();
+</script></body></html>
